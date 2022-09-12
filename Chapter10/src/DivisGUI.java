@@ -1,6 +1,7 @@
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.Console;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -17,7 +18,8 @@ import java.awt.Color;
 public class DivisGUI {
 
 	private JFrame frame;
-	private JTextField InputField;
+	private JTextField inputField;
+	private JButton divisibleButton;
 
 	/**
 	 * Launch the application.
@@ -53,80 +55,104 @@ public class DivisGUI {
 		JLabel lblNewLabel = new JLabel("Divisible by 3?");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		
-		JPanel greyPanel = new JPanel();
-		greyPanel.setBackground(Color.LIGHT_GRAY);
-		
 		JLabel lblByOwenBusch = new JLabel("By: Owen Busch");
 		lblByOwenBusch.setHorizontalAlignment(SwingConstants.CENTER);
+		
+		JLabel dividedNumber = new JLabel("Response will show up here");
+		dividedNumber.setHorizontalAlignment(SwingConstants.CENTER);
+		
+		inputField = new JTextField();
+		inputField.setColumns(10);
+		
+		
+		JLabel ResponseLabel = new JLabel("Yes or no?");
+		
+		divisibleButton = new JButton("Divisible?");		
+		divisibleButton.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e) 
+			{				
+				String eventName = e.getActionCommand();
+				 
+				if(eventName.equals("Divisible?"))
+				{					 
+					if(!inputField.getText().equals(""))
+					{
+						int num = Integer.parseInt(inputField.getText()); 
+						 
+						int newNum = num % 3;
+						 
+						if(newNum == 0)
+						{
+							ResponseLabel.setText("YES");
+							
+							dividedNumber.setText(inputField.getText() + " divided by 3 is: " + (num / 3));
+						}
+						else 
+						{
+							ResponseLabel.setText("NO");
+							dividedNumber.setText(inputField.getText() + " is not divisible by 3");
+						}
+					}
+					else
+					{
+						System.out.println("Enter a number");
+						return;
+					}
+				}			
+			}
+		});
+		divisibleButton.setActionCommand("Divisible?");
+		
+
+
+		
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
+			groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(156)
 							.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE))
 						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(26)
-							.addComponent(greyPanel, GroupLayout.PREFERRED_SIZE, 376, GroupLayout.PREFERRED_SIZE))
-						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(160)
 							.addComponent(lblByOwenBusch, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE)))
-					.addContainerGap(32, Short.MAX_VALUE))
+					.addContainerGap(168, Short.MAX_VALUE))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap(121, Short.MAX_VALUE)
+					.addComponent(inputField, GroupLayout.PREFERRED_SIZE, 86, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(divisibleButton)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(ResponseLabel, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
+					.addGap(80))
+				.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+					.addGap(41)
+					.addComponent(dividedNumber, GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE)
+					.addGap(49))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-					.addGap(7)
-					.addComponent(greyPanel, GroupLayout.PREFERRED_SIZE, 180, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+							.addGap(79)
+							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+								.addComponent(inputField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(divisibleButton, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(127)
+							.addComponent(ResponseLabel)))
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(dividedNumber, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+					.addGap(47)
 					.addComponent(lblByOwenBusch)
-					.addContainerGap(21, Short.MAX_VALUE))
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
-		
-		InputField = new JTextField();
-		InputField.setColumns(10);
-		
-		JLabel ResponseLabel = new JLabel("(TEMP)");
-		
-		JButton divisibleButton = new JButton("Divisible?");
-		
-		GroupLayout gl_greyPanel = new GroupLayout(greyPanel);
-		gl_greyPanel.setHorizontalGroup(
-			gl_greyPanel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_greyPanel.createSequentialGroup()
-					.addGap(67)
-					.addComponent(InputField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addGap(5)
-					.addComponent(divisibleButton)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(ResponseLabel, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(91, Short.MAX_VALUE))
-		);
-		
-		/*public void actionPerformed(ActionEvent event)
-		{
-			
-		}*/
-		
-		gl_greyPanel.setVerticalGroup(
-			gl_greyPanel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_greyPanel.createSequentialGroup()
-					.addGap(53)
-					.addGroup(gl_greyPanel.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_greyPanel.createSequentialGroup()
-							.addGap(4)
-							.addComponent(ResponseLabel))
-						.addGroup(gl_greyPanel.createSequentialGroup()
-							.addGap(1)
-							.addGroup(gl_greyPanel.createParallelGroup(Alignment.BASELINE)
-								.addComponent(InputField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(divisibleButton))))
-					.addContainerGap(106, Short.MAX_VALUE))
-		);
-		greyPanel.setLayout(gl_greyPanel);
 		frame.getContentPane().setLayout(groupLayout);
+		
 	}
 }
