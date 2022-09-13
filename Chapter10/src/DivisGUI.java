@@ -62,10 +62,12 @@ public class DivisGUI {
 		dividedNumber.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		inputField = new JTextField();
+		inputField.setHorizontalAlignment(SwingConstants.CENTER);
 		inputField.setColumns(10);
 		
 		
 		JLabel ResponseLabel = new JLabel("Yes or no?");
+		ResponseLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		divisibleButton = new JButton("Divisible?");		
 		divisibleButton.addActionListener(new ActionListener()
