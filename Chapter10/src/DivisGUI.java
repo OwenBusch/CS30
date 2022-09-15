@@ -1,3 +1,17 @@
+/*
+
+Program: DivisGUI.java          Last Date of this Revision: September 12, 2022
+
+Purpose: An application that checks if a number is divisible by 3 and then gives you what the number would be if it is.
+
+Author: Owen Busch, 
+School: CHHS
+Course: Computer Programming 30
+ 
+
+*/
+
+
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

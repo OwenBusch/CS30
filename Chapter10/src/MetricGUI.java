@@ -1,3 +1,16 @@
+/*
+
+Program: MetricGUI.java          Last Date of this Revision: September 13, 2022
+
+Purpose: An application that has a few selections of metric conversions.
+
+Author: Owen Busch, 
+School: CHHS
+Course: Computer Programming 30
+ 
+
+*/
+
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 

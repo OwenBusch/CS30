@@ -1,0 +1,12 @@
+1. A GUI is a graphical user interface, something that the user can see and interact with.
+
+2. It's executed based off of the actions of the user.
+
+3. Yes, but only after you apply an "absolute" layout.
+
+4. Labels can respond to events, you can change text, images, size and other factors in response to buttons, check boxes and more.
+
+5. Because if it wasn't it would run every line of code instantly and then stop running.
+
+6. A button is a component that you can use to detect a user input once clicked on, a label on the other hand is just the way to output the 
+response from said button
