@@ -1,3 +1,4 @@
+package SkillBuilding;
 import java.awt.EventQueue;
 
 import javax.swing.ImageIcon;
