@@ -12,11 +12,16 @@ import java.awt.event.ActionEvent;
 import java.awt.Font;
 import java.awt.Color;
 
-public class UEmplyee {
+public class UEmployeeTestGUI 
+{
 
-	String employee[] = {"Johnny", "Carlos", "Jenn", "Patty"};
+	String[] employee = UEmployee.employees();
 	
-	double salary[] = {13, 20, 15, 17};
+	double salary[] = UEmployee.salary();
+	
+	String[] department = Faculty.department();
+	
+	String[] jobTitle = Staff.jobTitle();
 	
 	int idNum;
 	
@@ -26,13 +31,18 @@ public class UEmplyee {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					UEmplyee window = new UEmplyee();
+	public static void main(String[] args) 
+	{
+		EventQueue.invokeLater(new Runnable() 
+		{
+			public void run() 
+			{
+				try 
+				{
+					UEmployeeTestGUI window = new UEmployeeTestGUI();
 					window.frame.setVisible(true);
-				} catch (Exception e) {
+				} catch (Exception e) 
+				{
 					e.printStackTrace();
 				}
 			}
@@ -42,33 +52,35 @@ public class UEmplyee {
 	/**
 	 * Create the application.
 	 */
-	public UEmplyee() {
+	public UEmployeeTestGUI() 
+	{
 		initialize();
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	private void initialize() 
+	{		
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		idInput = new JTextField();
-		idInput.setBounds(162, 114, 110, 20);
+		idInput.setBounds(67, 139, 110, 20);
 		frame.getContentPane().add(idInput);
 		idInput.setColumns(10);
 		
 		JLabel welcomeLabel = new JLabel("Welcome: Name");
 		welcomeLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		welcomeLabel.setBounds(154, 179, 125, 14);
+		welcomeLabel.setBounds(246, 93, 125, 14);
 		frame.getContentPane().add(welcomeLabel);
 		welcomeLabel.setVisible(false);
 		
 		JLabel salaryLabel = new JLabel("Your Salary is: __ /hr");
 		salaryLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		salaryLabel.setBounds(154, 204, 125, 14);
+		salaryLabel.setBounds(228, 118, 161, 14);
 		frame.getContentPane().add(salaryLabel);
 		salaryLabel.setVisible(false);
 		
@@ -80,46 +92,67 @@ public class UEmplyee {
 		
 		JLabel lblNewLabel_1 = new JLabel("Please login (0-3)");
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1.setBounds(154, 53, 125, 14);
+		lblNewLabel_1.setBounds(59, 78, 125, 14);
 		frame.getContentPane().add(lblNewLabel_1);
 		
 		JLabel errorLabel = new JLabel("Enter a valid ID");
 		errorLabel.setForeground(Color.RED);
 		errorLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		errorLabel.setBounds(154, 93, 125, 14);
+		errorLabel.setBounds(59, 118, 125, 14);
 		frame.getContentPane().add(errorLabel);
 		errorLabel.setVisible(false);	
 		
+		JLabel departmentLabel = new JLabel("Your department is: ");
+		departmentLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		departmentLabel.setBounds(194, 143, 230, 14);
+		frame.getContentPane().add(departmentLabel);
+		departmentLabel.setVisible(false);
+		
+		JLabel positionLabel = new JLabel("Your position today is:");
+		positionLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		positionLabel.setBounds(194, 168, 230, 14);
+		frame.getContentPane().add(positionLabel);
+		positionLabel.setVisible(false);
+		
 		JButton btnNewButton = new JButton("Submit");
-		btnNewButton.addActionListener(new ActionListener() {
+		btnNewButton.addActionListener(new ActionListener() 
+		{
 			public void actionPerformed(ActionEvent e) 
 			{
 				GetEmployee();
 				
-				if(idNum > employee.length || idInput == null)
+				if(idNum > UEmployee.employees().length)
 				{
 					errorLabel.setVisible(true);
 					
-					welcomeLabel.setText("");
-					salaryLabel.setText("");
+					welcomeLabel.setVisible(false);
+					salaryLabel.setVisible(false);
+					departmentLabel.setVisible(false);
+					positionLabel.setVisible(false);
 				}
 				else if(idNum <= employee.length)
 				{
 					errorLabel.setVisible(false);
 					welcomeLabel.setVisible(true);
 					salaryLabel.setVisible(true);
+					departmentLabel.setVisible(true);
+					positionLabel.setVisible(true);
 					welcomeLabel.setText("Welcome: " + employee[idNum]);
-					salaryLabel.setText("Your salary is: " + Double.toString(salary[idNum]) + "/hr");
+					salaryLabel.setText("Your salary is: $" + Double.toString(salary[idNum]) + "/hr");
+					departmentLabel.setText("Your department is: " + department[idNum]);
+					positionLabel.setText("Your position today is: " + jobTitle[idNum]);
 				}		
 			}
 		});
-		btnNewButton.setBounds(167, 145, 100, 23);
-		frame.getContentPane().add(btnNewButton);		
+		btnNewButton.setBounds(72, 170, 100, 23);
+		frame.getContentPane().add(btnNewButton);
 	}
 	
 	public void GetEmployee()
-	{
-		idNum = Integer.parseInt(idInput.getText());
-	
+	{		
+		if(idInput.getText() != null)
+		{
+			idNum = Integer.parseInt(idInput.getText());
+		}		
 	}
 }
