@@ -22,6 +22,7 @@ public class BusinessAcct
 		if(chargedForBalance = false)
 		{
 			acct.balance -= chargeAmount;
+			chargedForBalance = true;
 		}
 	}
 }

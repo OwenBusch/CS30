@@ -14,15 +14,15 @@ public class PersonalAcct
 	{
 		acct.getBalance();
 		
-		if(acct.balance > minimumBalance)
+		if(acct.balance < minimumBalance)
 		{
 			chargedForBalance = false;
 			
 			if(chargedForBalance = false)
 			{
 				acct.balance -= chargeAmount;
+				chargedForBalance = true;
 			}
-		}
-		
+		}		
 	}
 }

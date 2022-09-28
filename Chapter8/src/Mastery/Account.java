@@ -4,6 +4,7 @@ import java.text.NumberFormat;
 
 public class Account {
 	public static double balance;
+	public static double minBal;
 	private Customer cust;
 		
 	
