@@ -1,28 +1,26 @@
 package Mastery;
 
-public class BusinessAcct 
+public class BusinessAcct extends Account
 {
-	private Account acct;
+	//public static Account businessAcct = new Account(1000, "Owen", "Busch", "227 Covepark Place NE", "Calgary", "AB", "T3K 5Z8");
 	
-	private double minimumBalance = 500;
+	public static double minimumBalance = 500;
 	
-	private boolean chargedForBalance = true;
+	public static double chargeAmount = 10;
 	
-	public double chargeAmount = 2;
-	
-	public void ChargeForBalance()
+	public BusinessAcct(double bal, String fName, String lName, String str, String city, String st, String zip)
 	{
-		acct.getBalance();
+		//balance = bal;
+		super(bal, "Owen", "Busch", "227 Covepark Place NE", "Calgary", "AB", "T3K5Z8");
+	}
+	
+	public static void ChargeForBalance()
+	{
+		//businessAcct.getBalance();
 		
-		if(acct.balance > minimumBalance)
+		if(balance > minimumBalance)
 		{
-			chargedForBalance = false;
-		}
-		
-		if(chargedForBalance = false)
-		{
-			acct.balance -= chargeAmount;
-			chargedForBalance = true;
+			balance -= chargeAmount;
 		}
 	}
 }

@@ -18,11 +18,9 @@ public class BankingApp
 {
 
 	private JFrame frame;
-	
-	private Account personalAcct;
-	private Account businessAcct;
-	private PersonalAcct pAcc = new PersonalAcct();
-	private BusinessAcct bAcc = new BusinessAcct();
+
+	Account pAcc = new Account(250, "Owen", "Busch", "227 Covepark Place NE", "Calgary", "AB", "T3K5Z8");
+	Account bAcc = new Account(1000, "Owen", "Busch", "227 Covepark Place NE", "Calgary", "AB", "T3K5Z8");
 	private JTextField amountField;
 
 	/**
@@ -59,6 +57,9 @@ public class BankingApp
 	 */
 	private void initialize() 
 	{
+		//bAcc = BusinessAcct.businessAcct;
+		//pAcc = PersonalAcct.personalAcct;
+		
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -78,7 +79,7 @@ public class BankingApp
 		
 		JLabel balanceLabel = new JLabel("Your balance is: ");
 		balanceLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		balanceLabel.setBounds(137, 119, 159, 14);
+		balanceLabel.setBounds(96, 119, 241, 14);
 		frame.getContentPane().add(balanceLabel);
 		balanceLabel.setVisible(false);
 		
@@ -92,11 +93,19 @@ public class BankingApp
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
-				if(accountBox.getSelectedIndex() == 1)
-				{
-					personalAcct = new Account(250, "Owen", "Busch", "227 Covepark Place NE", "Calgary", "AB", "T3K 5Z8");
+				if(accountBox.getSelectedItem().equals("Personal Account"))
+				{		
+					pAcc.getBalance();
+					System.out.println(pAcc.balance);
 					balanceLabel.setVisible(true);
-					balanceLabel.setText("Your balance is: $" + personalAcct.balance);
+					balanceLabel.setText("Your balance is: $" + pAcc.balance);
+				}
+				else if(accountBox.getSelectedItem().equals("Business Account"))
+				{
+					bAcc.getBalance();					
+					System.out.println(bAcc.balance);
+					balanceLabel.setVisible(true);
+					balanceLabel.setText("Your balance is: $" + bAcc.balance);
 				}
 			}
 		});
@@ -110,8 +119,15 @@ public class BankingApp
 			{
 				if(accountBox.getSelectedIndex() == 1)
 				{
-					personalAcct.balance += Double.parseDouble(amountField.getText());
-					balanceLabel.setText("Your balance is: $" + personalAcct.balance);
+					pAcc.getBalance();
+					pAcc.balance += Double.parseDouble(amountField.getText());
+					balanceLabel.setText("Your balance is: $" + pAcc.balance);
+				}
+				if(accountBox.getSelectedIndex() == 2)
+				{
+					bAcc.getBalance();
+					bAcc.balance += Double.parseDouble(amountField.getText());
+					balanceLabel.setText("Your balance is: $" + bAcc.balance);
 				}
 			}
 		});
@@ -126,16 +142,19 @@ public class BankingApp
 			{
 				if(accountBox.getSelectedIndex() == 1)
 				{
-					personalAcct.balance -= Double.parseDouble(amountField.getText());
-					balanceLabel.setText("Your balance is: $" + personalAcct.balance);
+					pAcc.balance -= Double.parseDouble(amountField.getText());		
 					
-					if(personalAcct.balance < pAcc.minimumBalance)
-					{
-						pAcc.acct = personalAcct;
-						pAcc.ChargeForBalance();
-						System.out.println(personalAcct.balance + " " + pAcc.acct.balance);
-						balanceLabel.setText("Your balance is: $" + personalAcct.balance);
-					}
+					PersonalAcct.ChargeForBalance();
+					
+					balanceLabel.setText("Your balance is: $" + pAcc.balance);
+				}
+				if(accountBox.getSelectedIndex() == 2)
+				{
+					bAcc.balance -= Double.parseDouble(amountField.getText());
+					
+					BusinessAcct.ChargeForBalance();
+					
+					balanceLabel.setText("Your balance is: $" + bAcc.balance);
 				}
 			}
 		});
