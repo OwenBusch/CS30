@@ -14,13 +14,15 @@ public class PersonalAcct extends Account
 		super(bal, "Owen", "Busch", "227 Covepark Place NE", "Calgary", "AB", "T3K5Z8");
 	}
 	
-	public static void ChargeForBalance()
+	public void withdrawal(double amt)
 	{
-		System.out.println(balance);
-		
-		if(balance < minimumBalance)
+		if(amt <= super.getBalance() - 2)
 		{
-			balance -= chargeAmount;
-		}		
+			super.withdrawal(amt);
+			if(super.getBalance() < 100)
+			{
+				super.withdrawal(2);
+			}
+		}
 	}
 }

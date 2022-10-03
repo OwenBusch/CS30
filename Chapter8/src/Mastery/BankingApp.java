@@ -19,8 +19,9 @@ public class BankingApp
 
 	private JFrame frame;
 
-	Account pAcc = new Account(250, "Owen", "Busch", "227 Covepark Place NE", "Calgary", "AB", "T3K5Z8");
-	Account bAcc = new Account(1000, "Owen", "Busch", "227 Covepark Place NE", "Calgary", "AB", "T3K5Z8");
+	PersonalAcct pAcc = new PersonalAcct(250, "Owen", "Busch", "227 Covepark Place NE", "Calgary", "AB", "T3K5Z8");
+	BusinessAcct bAcc = new BusinessAcct(1000, "Owen", "Busch", "227 Covepark Place NE", "Calgary", "AB", "T3K5Z8");
+
 	private JTextField amountField;
 
 	/**
@@ -57,8 +58,8 @@ public class BankingApp
 	 */
 	private void initialize() 
 	{
-		//bAcc = BusinessAcct.businessAcct;
-		//pAcc = PersonalAcct.personalAcct;
+		pAcc.getBalance();
+		bAcc.getBalance();
 		
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
@@ -123,7 +124,7 @@ public class BankingApp
 					pAcc.balance += Double.parseDouble(amountField.getText());
 					balanceLabel.setText("Your balance is: $" + pAcc.balance);
 				}
-				if(accountBox.getSelectedIndex() == 2)
+				else if(accountBox.getSelectedIndex() == 2)
 				{
 					bAcc.getBalance();
 					bAcc.balance += Double.parseDouble(amountField.getText());
@@ -148,7 +149,7 @@ public class BankingApp
 					
 					balanceLabel.setText("Your balance is: $" + pAcc.balance);
 				}
-				if(accountBox.getSelectedIndex() == 2)
+				else if(accountBox.getSelectedIndex() == 2)
 				{
 					bAcc.balance -= Double.parseDouble(amountField.getText());
 					
