@@ -1,0 +1,8 @@
+1.Has-a means it contains a part of another class, and Is-a means it IS the main part of a class
+2.go() and stop()
+3.An abstract method can contain any values determined within the method, overriding it is easy.
+4.An interface is essentially an abstract class. It contains the abstract methods
+6. a) It is an int, it returns the value 20 when called.
+   b) Wo is an interface
+   c) it never had any value in any prior declarations
+   d) Roo(), doThis(), doThat(), doNow(), Bo()
