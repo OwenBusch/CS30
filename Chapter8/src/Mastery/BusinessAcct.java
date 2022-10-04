@@ -14,13 +14,15 @@ public class BusinessAcct extends Account
 		super(bal, "Owen", "Busch", "227 Covepark Place NE", "Calgary", "AB", "T3K5Z8");
 	}
 	
-	public static void ChargeForBalance()
+	public void withdrawal(double amt)
 	{
-		//businessAcct.getBalance();
-		
-		if(balance > minimumBalance)
+		if(amt <= super.getBalance() - chargeAmount)
 		{
-			balance -= chargeAmount;
+			super.withdrawal(amt);
+			if(super.getBalance() < minimumBalance)
+			{
+				super.withdrawal(chargeAmount);
+			}
 		}
 	}
 }

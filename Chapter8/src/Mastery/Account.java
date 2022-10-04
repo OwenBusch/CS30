@@ -3,7 +3,7 @@ package Mastery;
 import java.text.NumberFormat;
 
 public class Account {
-	static double balance;
+	private double balance;
 	public static double minBal;
 	private Customer cust;
 		
@@ -27,6 +27,11 @@ public class Account {
 	 */
 	public double getBalance() {
 	 	return(balance);
+	}
+	
+	public void setBalance(double b)
+	{
+		balance = b;
 	}
 
 

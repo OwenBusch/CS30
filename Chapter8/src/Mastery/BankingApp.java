@@ -16,11 +16,10 @@ import java.awt.Color;
 
 public class BankingApp 
 {
+	BusinessAcct bAcc = new BusinessAcct(1000, "Owen", "Busch", "227 Covepark Place NE", "Calgary", "AB", "T3K5Z8");
+	PersonalAcct pAcc = new PersonalAcct(250, "Owen", "Busch", "227 Covepark Place NE", "Calgary", "AB", "T3K5Z8");
 
 	private JFrame frame;
-
-	PersonalAcct pAcc = new PersonalAcct(250, "Owen", "Busch", "227 Covepark Place NE", "Calgary", "AB", "T3K5Z8");
-	BusinessAcct bAcc = new BusinessAcct(1000, "Owen", "Busch", "227 Covepark Place NE", "Calgary", "AB", "T3K5Z8");
 
 	private JTextField amountField;
 
@@ -58,8 +57,8 @@ public class BankingApp
 	 */
 	private void initialize() 
 	{
-		pAcc.getBalance();
-		bAcc.getBalance();
+		
+		
 		
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
@@ -85,9 +84,21 @@ public class BankingApp
 		balanceLabel.setVisible(false);
 		
 		amountField = new JTextField();
-		amountField.setBounds(174, 186, 86, 20);
+		amountField.setBounds(174, 178, 86, 20);
 		frame.getContentPane().add(amountField);
 		amountField.setColumns(10);
+		
+		JLabel wthdNotif = new JLabel("YOU WITHDREW: $");
+		wthdNotif.setHorizontalAlignment(SwingConstants.CENTER);
+		wthdNotif.setBounds(132, 236, 170, 14);
+		frame.getContentPane().add(wthdNotif);
+		wthdNotif.setVisible(false);
+		
+		JLabel dpstNotif = new JLabel("YOU DEPOSITED: $");
+		dpstNotif.setHorizontalAlignment(SwingConstants.CENTER);
+		dpstNotif.setBounds(132, 236, 170, 14);
+		frame.getContentPane().add(dpstNotif);
+		dpstNotif.setVisible(false);
 		
 		JComboBox accountBox = new JComboBox();
 		accountBox.addActionListener(new ActionListener() 
@@ -96,17 +107,19 @@ public class BankingApp
 			{
 				if(accountBox.getSelectedItem().equals("Personal Account"))
 				{		
-					pAcc.getBalance();
-					System.out.println(pAcc.balance);
+					System.out.println(pAcc.getBalance());
 					balanceLabel.setVisible(true);
-					balanceLabel.setText("Your balance is: $" + pAcc.balance);
+					balanceLabel.setText("Your balance is: $" + pAcc.getBalance());
 				}
 				else if(accountBox.getSelectedItem().equals("Business Account"))
-				{
-					bAcc.getBalance();					
-					System.out.println(bAcc.balance);
+				{			
+					System.out.println(bAcc.getBalance());
 					balanceLabel.setVisible(true);
-					balanceLabel.setText("Your balance is: $" + bAcc.balance);
+					balanceLabel.setText("Your balance is: $" + bAcc.getBalance());
+				}
+				else
+				{
+					return;
 				}
 			}
 		});
@@ -121,18 +134,24 @@ public class BankingApp
 				if(accountBox.getSelectedIndex() == 1)
 				{
 					pAcc.getBalance();
-					pAcc.balance += Double.parseDouble(amountField.getText());
-					balanceLabel.setText("Your balance is: $" + pAcc.balance);
+					pAcc.deposit(Double.parseDouble(amountField.getText()));
+					balanceLabel.setText("Your balance is: $" + pAcc.getBalance());
+					wthdNotif.setVisible(false);
+					dpstNotif.setVisible(true);
+					dpstNotif.setText("YOU DEPOSITED: $" + amountField.getText());
 				}
 				else if(accountBox.getSelectedIndex() == 2)
 				{
 					bAcc.getBalance();
-					bAcc.balance += Double.parseDouble(amountField.getText());
-					balanceLabel.setText("Your balance is: $" + bAcc.balance);
+					bAcc.deposit(Double.parseDouble(amountField.getText()));
+					balanceLabel.setText("Your balance is: $" + bAcc.getBalance());
+					wthdNotif.setVisible(false);
+					dpstNotif.setVisible(true);
+					dpstNotif.setText("YOU DEPOSITED: $" + amountField.getText());
 				}
 			}
 		});
-		cfrmDpst.setBounds(172, 217, 89, 23);
+		cfrmDpst.setBounds(172, 209, 89, 23);
 		frame.getContentPane().add(cfrmDpst);
 		cfrmDpst.setVisible(false);
 		
@@ -143,23 +162,27 @@ public class BankingApp
 			{
 				if(accountBox.getSelectedIndex() == 1)
 				{
-					pAcc.balance -= Double.parseDouble(amountField.getText());		
+					pAcc.withdrawal(Double.parseDouble(amountField.getText()));		
 					
-					PersonalAcct.ChargeForBalance();
+					balanceLabel.setText("Your balance is: $" + pAcc.getBalance());
 					
-					balanceLabel.setText("Your balance is: $" + pAcc.balance);
+					wthdNotif.setVisible(true);
+					dpstNotif.setVisible(false);
+					wthdNotif.setText("YOU WITHDREW: $" + amountField.getText());
 				}
 				else if(accountBox.getSelectedIndex() == 2)
 				{
-					bAcc.balance -= Double.parseDouble(amountField.getText());
+					bAcc.withdrawal(Double.parseDouble(amountField.getText()));
 					
-					BusinessAcct.ChargeForBalance();
+					balanceLabel.setText("Your balance is: $" + bAcc.getBalance());
 					
-					balanceLabel.setText("Your balance is: $" + bAcc.balance);
+					wthdNotif.setVisible(true);
+					dpstNotif.setVisible(false);
+					wthdNotif.setText("YOU WITHDREW: $" + amountField.getText());
 				}
 			}
 		});
-		cfrmWthd.setBounds(172, 217, 89, 23);
+		cfrmWthd.setBounds(172, 209, 89, 23);
 		frame.getContentPane().add(cfrmWthd);
 		cfrmWthd.setVisible(false);
 		
@@ -188,5 +211,7 @@ public class BankingApp
 		depositBtn.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		depositBtn.setBounds(221, 144, 118, 23);
 		frame.getContentPane().add(depositBtn);	
+		
+		
 	}
 }
