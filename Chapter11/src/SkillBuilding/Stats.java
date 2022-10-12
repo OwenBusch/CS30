@@ -16,24 +16,43 @@ public class Stats
 		double totalScores = 0;
 		int numScores = 0;
 		
+		double highScore = 0;
+		double lowScore = 100;
+		
 		try
 		{
 			in = new FileReader(dataFile);
 			readFile = new BufferedReader(in);
-			while((names = readFile.readLine()) != null)
-			{	
-				System.out.println(names);
-				readFile.readLine();
-			}
 			
-			while((score = readFile.readLine()) != null)
-			{
-				System.out.println(score);		
+			while((names = readFile.readLine()) != null) //reads
+			{	
+				score = readFile.readLine();
+				
+				System.out.println(names);
+				
+				System.out.println(score);	
 				numScores++;		
+					
+				if(Double.parseDouble(score) >= highScore)
+				{
+					highScore = Double.parseDouble(score);
+				}
+				if(Double.parseDouble(score) <= lowScore)
+				{
+					lowScore = Double.parseDouble(score);
+				}
+					
 				totalScores += Double.parseDouble(score);
+				
 			}
+						
+			System.out.println("Highest score was: " + highScore);
+			System.out.println("Lowest score was: " + lowScore);
 			
 			avgScore = totalScores / numScores;
+			
+			System.out.println("Class average was: " + avgScore);
+			
 			readFile.close();
 			in.close();
 		}
