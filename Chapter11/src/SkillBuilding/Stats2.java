@@ -57,9 +57,9 @@ public class Stats2
 					avgScore = totalMark / students;
 				}
 				
-				System.out.println("The lowest score in the class was: " + lowScore);
-				System.out.println("The highest score in the class was: " + highScore);
-				System.out.println("The class average was: " + avgScore);
+				System.out.println("The lowest score in the class was: %" + lowScore);
+				System.out.println("The highest score in the class was: %" + highScore);
+				System.out.println("The class average was: %" + avgScore);
 			}
 			else 
 			{
@@ -93,9 +93,9 @@ public class Stats2
 					avgScore = (avgScore += score) / students;
 				}
 				
-				System.out.println("The lowest score in the class was: " + lowScore);
-				System.out.println("The highest score in the class was: " + highScore);
-				System.out.println("The class average was: " + avgScore);
+				System.out.println("The lowest score in the class was: %" + lowScore);
+				System.out.println("The highest score in the class was: %" + highScore);
+				System.out.println("The class average was: %" + avgScore);
 			}
 		}
 		catch(FileNotFoundException e)
