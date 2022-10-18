@@ -1,0 +1,2 @@
+This is an application that tells you how many words are in a document, I am just the document, but the application can 
+read my contents and tell you how many words I've got as well as the average length of them!
