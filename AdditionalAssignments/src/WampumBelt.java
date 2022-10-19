@@ -10,9 +10,13 @@ public class WampumBelt
 		Tassles();
 		Border();
 		Lines();
+		Border();
 		Triangle();
+		Border();
 		Square();
+		Border();
 		Triangle();
+		Border();
 		Lines();
 		Border();
 		Tassles();
