@@ -9,7 +9,12 @@ public class WampumBelt
 	{
 		Tassles();
 		Border();
+		Lines();
 		Triangle();
+		Square();
+		Triangle();
+		Lines();
+		Border();
 		Tassles();
 	}
 	
@@ -73,17 +78,55 @@ public class WampumBelt
 		System.out.println("");
 		System.out.print("||        /  \\        ||");
 		System.out.println("");
-		System.out.print("||       /    \\       ||");
+		System.out.print("||       / \\  \\       ||");
 		System.out.println("");
-		System.out.print("||      /      \\      ||");
+		System.out.print("||      /   /  \\      ||");
 		System.out.println("");
-		System.out.print("||      \\      /      ||");
+		System.out.print("||      \\  \\   /      ||");
 		System.out.println("");
-		System.out.print("||       \\    /       ||");
+		System.out.print("||       \\  / /       ||");
 		System.out.println("");
 		System.out.print("||        \\  /        ||");
 		System.out.println("");
 		System.out.print("||         \\/         ||");
+		System.out.println("");
+	}
+	
+	static void Square()
+	{
+		System.out.print("|| #################  ||");
+		System.out.println("");
+		System.out.print("|| #               #  ||");
+		System.out.println("");
+		System.out.print("|| #      ###      #  ||");
+		System.out.println("");
+		System.out.print("|| #      #8#      #  ||");
+		System.out.println("");
+		System.out.print("|| #      ###      #  ||");
+		System.out.println("");
+		System.out.print("|| #               #  ||");
+		System.out.println("");
+		System.out.print("|| #################  ||");
+		System.out.println("");
+	}
+	
+	static void Lines()
+	{
+		System.out.print("||--------------------||");
+		System.out.println("");
+		System.out.print("||--------------------||");
+		System.out.println("");
+		System.out.print("||                    ||");
+		System.out.println("");
+		System.out.print("||--------------------||");
+		System.out.println("");
+		System.out.print("||--------------------||");
+		System.out.println("");
+		System.out.print("||                    ||");
+		System.out.println("");
+		System.out.print("||--------------------||");
+		System.out.println("");
+		System.out.print("||--------------------||");
 		System.out.println("");
 	}
 
