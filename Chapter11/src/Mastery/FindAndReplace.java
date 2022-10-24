@@ -133,14 +133,14 @@ public class FindAndReplace {
 			{
 				wordToReplace = findField.getText();
 				replacementWord = replaceField.getText();
-
-				
+	
 				try
 				{
 					in = new FileReader(textFile); 
 					readFile = new BufferedReader(in);
+					fileName = (textField.getText());
 					fileName = fileName.replace(".", "NEW.");
-					newFile = new File(fileName);
+					newFile = new File("..\\Chapter11\\src\\Mastery\\" + fileName);
 					out = new FileWriter(newFile);
 					writeFile = new BufferedWriter(out);
 					while((lineOfText = readFile.readLine()) != null)
@@ -148,11 +148,14 @@ public class FindAndReplace {
 						lineOfText = lineOfText.replaceAll(wordToReplace, replacementWord);
 						writeFile.write(lineOfText);
 						writeFile.newLine();
+						System.out.println("File modified");
+						System.out.println(textFile.toString());
 					}
 					writeFile.close();
 					out.close();
 					readFile.close();
 					in.close();
+					
 				}
 				catch(FileNotFoundException s)
 				{
