@@ -1,0 +1,25 @@
+Yes, you can call data in a file. As long as that data exists on the computer you're working on, or create the data in the program
+
+import java.io.*;
+
+There has to be 2 \\
+
+try/catch
+try
+{
+
+}
+catch(IOException s)
+{
+	System.out.println("Problem reading file.");
+	System.err.println("IOException: " + s.getMessage());
+}
+
+System.out.err
+In the console
+
+FileWriter and BufferedWriter
+
+bal = new BufferedReader.parseDouble();
+
+totalBal += bal;
