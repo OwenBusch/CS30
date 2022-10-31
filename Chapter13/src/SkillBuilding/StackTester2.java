@@ -19,14 +19,14 @@ public class StackTester2
 		s.push(obj1);
 		s.push(obj4);
 		s.push(obj6);
-		System.out.println("Top of stack: " + s.top().toString());
+		System.out.println("Top of stack: " + s.top());
 		System.out.println("Items in stack: " + s.size());
 		System.out.println("Removing top item.");
 		s.makeEmpty();
 		System.out.println("adding back obj 1 and new item obj2.");
 		s.push(obj6);
 		//System.out.println(obj6);
-		System.out.println("Method on top stack returned: " + s.top());
+		System.out.println("Top of stack: " + s.top());
 		System.out.println("Items in stack: " + s.size());
 		s.makeEmpty();
 	}
