@@ -1,0 +1,6 @@
+1. They both store values of any given data type, you can add and remove items from both
+3. 8 13, 8 12
+4. Because all the new plates being added are on top, and are being the first ones taken for the next customer. All the cool plates are on the bottom of the stack
+5. 5 8, 13 5 
+6. FIFO means the first one to enter will be the first to leave. This is seen in queues. LIFO means the last one to come in is the first one to go out. This is seen in Stacks.
+7. A wait line, the first person to enter the line queue would be the first one to get admission. An assembly line, the first part into the line will be the first to be worked on.
