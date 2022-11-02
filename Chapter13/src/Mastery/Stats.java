@@ -6,6 +6,9 @@ import java.util.Scanner;
 public class Stats 
 {
 	static int num;
+	static int sum = 0;
+	static int min = 100;
+	static int max = 0;
 	static int minNum;
 	static int maxNum;
 	
@@ -29,10 +32,10 @@ public class Stats
 				
 				for(int i = 0; i < data.size(); i++)
 				{
-					System.out.print(data.get(i - 1) + ", ");
+					System.out.print(data.get(i) + ", ");
 				}
 				
-				System.out.println("The sum of all the items in the stack is: " + addToSum());
+				System.out.println("\nThe sum of all the items in the stack is: " + addToSum());
 				System.out.println("The smallest number in the stack is: " + minNum);
 				System.out.println("The biggest number in the stack is: " + maxNum);
 				
@@ -50,14 +53,12 @@ public class Stats
 	
 	public static int addToSum()
 	{
-		int sum = 0;
 		sum += num;
-		return(sum);
+		return(sum - 999);
 	}
 	
 	public static void findMin(int testNum)
 	{
-		int min = 100;
 		if(testNum < min)
 		{
 			min = testNum;
@@ -68,7 +69,6 @@ public class Stats
 	
 	public static void findMax(int testNum)
 	{
-		int max = 0;
 		if(testNum > max)
 		{
 			max = testNum;
