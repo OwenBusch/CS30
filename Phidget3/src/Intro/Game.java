@@ -5,45 +5,35 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
+
+import com.phidget22.PhidgetException;
+
 import java.awt.Font;
 import java.awt.Color;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JPanel;
-import com.phidget22.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class Game 
 {
+	
+	static boolean initialized = false;
 
 	private JFrame frame;
 
 	/**
 	 * Launch the application.
+	 * @throws PhidgetException 
 	 */
-	public static void main(String[] args) 
-	{
-		EventQueue.invokeLater(new Runnable() 
-		{
-			public void run() 
-			{
-				try 
-				{
-					Game window = new Game();
-					window.frame.setVisible(true);
-				}
-				catch (Exception e) 
-				{
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	
 
 	/**
 	 * Create the application.
 	 * @throws Exception 
 	 */
-	public Game() throws Exception 
+	public Game()
 	{
 		initialize();
 	}
@@ -52,9 +42,31 @@ public class Game
 	 * Initialize the contents of the frame.
 	 * @throws Exception 
 	 */
-	private void initialize() throws Exception 
+	private void initialize()
 	{
 		frame = new JFrame();
+		frame.addWindowListener(new WindowAdapter() 
+		{
+			@Override
+			public void windowOpened(WindowEvent e) 
+			{
+				while(true)
+				{
+					try 
+					{
+						if(GameLogic.greenButtonInput() == true && GameLogic.redButtonInput() == true)
+						{
+							System.out.println("Both Buttons Pressed, starting now");
+						}
+					} 
+					catch (PhidgetException e1) 
+					{
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}	
+			}
+		});
 		frame.getContentPane().setBackground(new Color(153, 204, 255));
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -68,28 +80,6 @@ public class Game
 		startPrompt.setForeground(new Color(255, 0, 102));
 		startPrompt.setHorizontalAlignment(SwingConstants.CENTER);
 		startPrompt.setFont(new Font("Impact", Font.PLAIN, 19));
-		
-		boolean titleScreen = true;
-		
-		DigitalInput redButton = new DigitalInput();
-		DigitalInput greenButton = new DigitalInput();
-		
-		redButton.setHubPort(0);
-		redButton.setIsHubPortDevice(true);
-		greenButton.setHubPort(5);
-		greenButton.setIsHubPortDevice(true);
-		
-		redButton.open(1000);
-		greenButton.open(1000);
-		
-		while(true)
-		{
-			if(redButton.getState() == true && greenButton.getState() == true)
-			{
-				System.out.println("Both Buttons Pressed");
-				Thread.sleep(150);
-			}
-		}
 		
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
@@ -113,7 +103,37 @@ public class Game
 		
 		frame.getContentPane().setLayout(groupLayout);
 		
-		
+	}
+	
+	public static void main(String[] args) throws PhidgetException 
+	{
+		EventQueue.invokeLater(new Runnable() 
+		{
+			public void run() 
+			{
+				Game window = new Game();
+				window.frame.setVisible(true);
+				
+				try 
+				{
+					GameLogic.ControllerInitializion();
+					//readInput();
+				}
+				catch (Exception e) 
+				{
+					e.printStackTrace();
+				}
+			}
+		});
 		
 	}
+	
+	public static void readGreenInput() throws PhidgetException
+	{
+		if(GameLogic.greenButtonInput() == true)
+		{
+			System.out.println("Green Pressed");
+		}	
+	}
+	
 }
